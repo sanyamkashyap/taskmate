@@ -1,10 +1,9 @@
-import React from "react";
-import Sidebar from "./sidebar";
+import Sidebar from "../compenents/sidebar";
 
 const page = () => {
   return (
     <div>
-      <Sidebar />
+    hiii
     </div>
   );
 };
