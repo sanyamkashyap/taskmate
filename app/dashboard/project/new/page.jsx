@@ -1,13 +1,13 @@
 "use client";
-import { ProjectState } from "@/app/hooks/useContex";
+import { UseProject } from "@/app/context/useContex";
 import React from "react";
 
 const NewProject = () => {
-  const { projects } = ProjectState();
+  const { projects } = UseProject();
   return (
     <div>
-      {projects.map((project) => (
-        <div>{project.name}</div>
+      {projects.map((project, i) => (
+        <div key={project.id}>{project.name}</div>
       ))}
     </div>
   );

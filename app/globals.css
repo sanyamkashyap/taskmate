@@ -23,3 +23,11 @@
   font-weight: 600;
   transition: all 0.2s ease;
 }
+
+.project-card{
+  width: 250px;
+  height: 200px;
+  border-radius: 10px;
+  background-color: skyblue;
+padding: 10px;
+}

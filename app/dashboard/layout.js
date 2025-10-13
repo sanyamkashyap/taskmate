@@ -1,12 +1,12 @@
 import Sidebar from "../compenents/sidebar";
-import ProjectProvider from "../hooks/useContex";
+import ProjectProvider from "../context/useContex";
 
 const layout = ({ children }) => {
   return (
     <ProjectProvider>
       <div className="flex">
         <Sidebar />
-        <main>{children}</main>
+        <main className="ml-48">{children}</main>
       </div>
     </ProjectProvider>
   );

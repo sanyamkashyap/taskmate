@@ -7,7 +7,7 @@ const ProjectContext = createContext();
 const ProjectProvider = ({ children }) => {
   const { users, projects, todos } = data;
   const [newTodo, setNewTodos] = useState([]);
-  const [newProject, setNewProject] = useState([]);
+  const [newProject, setNewProject] = useState(projects);
   const [newUser, setNewUser] = useState([]);
   return (
     <ProjectContext.Provider
@@ -28,7 +28,7 @@ const ProjectProvider = ({ children }) => {
   );
 };
 
-export const ProjectState = () => {
+export const UseProject = () => {
   return useContext(ProjectContext);
 };
 
