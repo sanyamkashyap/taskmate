@@ -8,9 +8,10 @@ const Page = () => {
   const params = useParams();
   const id = params.id;
   const todo = todos.find((t) => String(t.projectId) == String(id));
-  console.log(id);
-  console.log(todo);
+  // console.log(id);
+  // console.log(todo);
   return <div>{todo ? todo.title : "not found"}</div>;
 };
 
 export default Page;
+ 

@@ -1,14 +1,14 @@
 import { UseProject } from "@/app/context/useContex";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-const ProjectForm = () => {
+const ProjectForm = ({ project, isEditing, id }) => {
   const { projects, newProject, setNewProject } = UseProject();
   const [formData, setFormData] = useState({
     id: crypto.randomUUID(),
     name: "",
     description: "",
   });
-
+ 
   const handleSubmit = (e) => {
     e.preventDefault();
     setNewProject((prevState) => [...prevState, { ...formData }]);
@@ -22,6 +22,8 @@ const ProjectForm = () => {
       [name]: value,
     }));
   };
+
+  useEffect;
 
   return (
     <div>
