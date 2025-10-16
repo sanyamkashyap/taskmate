@@ -8,6 +8,7 @@ import Link from "next/link";
 
 const Projects = () => {
   const { projects, newProject, setNewProject } = UseProject();
+  const [editing,setEditing] = useState(false)
   const [showForm, setShowForm] = useState(false);
   const toggleform = () => {
     setShowForm(() => !showForm);
@@ -17,6 +18,10 @@ const Projects = () => {
 
   return (
     <div>
+      <div>
+      <label htmlFor="search"> search</label>
+      <input className="border" type="text" name="search" />
+      </div>
       <button onClick={toggleform}>Create Project</button>
       {showForm && (
         <div>
@@ -27,7 +32,7 @@ const Projects = () => {
         {newProject.map((project) => (
           <div key={project.id}>
             <Link href={`/dashboard/project/${project.id}`}>
-              <Card>{project.name}</Card>
+              <Card title={project.name} description={project.description}></Card>
             </Link>
           </div>
         ))}
