@@ -1,7 +1,7 @@
 import { UseProject } from "@/app/context/useContex";
 import React, { useEffect, useState } from "react";
 
-const ProjectForm = ({ project, isEditing, id }) => {
+const ProjectForm = ({ project,}) => {
   const { projects, newProject, setNewProject } = UseProject();
   const [formData, setFormData] = useState({
     id: crypto.randomUUID(),
@@ -23,7 +23,9 @@ const ProjectForm = ({ project, isEditing, id }) => {
     }));
   };
 
-  useEffect;
+  useEffect(()=>{
+
+  })
 
   return (
     <div>
