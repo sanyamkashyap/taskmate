@@ -30,7 +30,10 @@ const Projects = () => {
         <button onClick={toggleform}>Create Project</button>
         {showForm && (
           <div>
-            <ProjectForm project={selectedProject} />
+            <ProjectForm
+              selectedProject={selectedProject}
+              setSelectedProject={setSelectedProject}
+            />
           </div>
         )}
       </div>

@@ -1,18 +1,30 @@
 import { UseProject } from "@/app/context/useContex";
 import React, { useEffect, useState } from "react";
 
-const ProjectForm = ({ project,}) => {
+const ProjectForm = ({ selectedProject, setSelectedProject }) => {
   const { projects, newProject, setNewProject } = UseProject();
   const [formData, setFormData] = useState({
-    id: crypto.randomUUID(),
     name: "",
     description: "",
   });
- 
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    setNewProject((prevState) => [...prevState, { ...formData }]);
-    console.log(newProject);
+    if (selectedProject) {
+      setNewProject((prev) =>
+        prev.map((p) =>
+          p.id === selectedProject.id ? { ...p, ...formData } : p
+        )
+      );
+    } else {
+      setNewProject((prevState) => [
+        ...prevState,
+        { ...formData, id: crypto.randomUUID() },
+      ]);
+    }
+
+    setFormData({ name: "", description: "" });
+    setSelectedProject(null);
   };
 
   const handleChange = (e) => {
@@ -23,9 +35,14 @@ const ProjectForm = ({ project,}) => {
     }));
   };
 
-  useEffect(()=>{
-
-  })
+  useEffect(() => {
+    if (selectedProject) {
+      setFormData({
+        name: selectedProject.name,
+        description: selectedProject.description,
+      });
+    }
+  }, [selectedProject]);
 
   return (
     <div>
@@ -46,7 +63,8 @@ const ProjectForm = ({ project,}) => {
           value={formData.description}
           onChange={handleChange}
         />
-        <button> submit</button>
+        <button type="submit"> submit</button>
+        <button type="button" onClick={()=>setSelectedProject(null)}> close</button>
       </form>
     </div>
   );
