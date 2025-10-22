@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 
 
@@ -11,7 +11,7 @@ const router = useRouter()
   return (
     <div
       className="bg-white border w-62  rounded-xl p-5"
-      onClick={() => router.push(`/dasboard/project/${project.id}`)}
+      onClick={() => router.push(`/dashboard/project/${project.id}`)}
     >
       <div className="">
         <div className=" flex flex-col gap-2">

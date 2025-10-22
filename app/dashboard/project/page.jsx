@@ -5,14 +5,15 @@ import { UseProject } from "@/app/context/useContex";
 import React, { useState } from "react";
 import ProjectForm from "./form";
 import Link from "next/link";
+import Modal from "@/app/compenents/project/modal";
 
 const Projects = () => {
   const { projects, newProject, setNewProject } = UseProject();
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
-  const [showForm, setShowForm] = useState(false);
-  const toggleform = () => {
-    setShowForm(() => !showForm);
+  const [showModal, setShowModal] = useState(false);
+  const toggleModal = () => {
+    setShowModal(() => !showModal);
   };
 
   const handleEdit = (project) => {
@@ -25,15 +26,22 @@ const Projects = () => {
     <div>
       <div className="flex gap-2 py-5">
         <div>
-          <input className="border" type="text" name="search" />
-        </div>
-        <button onClick={toggleform}>Create Project</button>
-        {showForm && (
           <div>
-            <ProjectForm
+            <input className="border" type="text" name="search" />
+          </div>
+          <button onClick={toggleModal}>Create Project</button>
+        </div>
+        {showModal && (
+          <div>
+            <Modal
               selectedProject={selectedProject}
               setSelectedProject={setSelectedProject}
             />
+
+            {/* <ProjectForm
+              selectedProject={selectedProject}
+              setSelectedProject={setSelectedProject}
+            /> */}
           </div>
         )}
       </div>
