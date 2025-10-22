@@ -32,7 +32,8 @@ const Projects = () => {
           <button onClick={toggleModal}>Create Project</button>
         </div>
         {showModal && (
-          <div>
+          <div className="fixed inset-0 bg-black/50 flex justify-center items-center z-50
+">
             <Modal
               selectedProject={selectedProject}
               setSelectedProject={setSelectedProject}

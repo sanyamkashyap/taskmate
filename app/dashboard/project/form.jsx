@@ -46,7 +46,7 @@ const ProjectForm = ({ selectedProject, setSelectedProject }) => {
 
   return (
     <div>
-      <form className="flex flex-col py-18  justify-center items-center bg-black/40" onSubmit={handleSubmit}>
+      <form className="flex flex-col py-18 bg-white p-6 rounded-xl shadow-lg w-[90%] max-w-md " onSubmit={handleSubmit}>
         <label htmlFor="name">Project Name</label>
         <input
           className="border"

@@ -6,7 +6,7 @@ const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <aside className="fixed top-0 left-0 h-screen bg-gray-500 flex flex-col w-40 pl-3 ">
+    <aside className="fixed top-0 left-0 h-screen bg-amber-500 flex flex-col w-40 pl-3 ">
       <div className="py-3">
         <div className="text-2xl font-extrabold leading-5">
           <span className="text-orange-500">Task</span>mate
