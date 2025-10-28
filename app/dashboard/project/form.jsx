@@ -1,7 +1,12 @@
 import { UseProject } from "@/app/context/useContex";
 import React, { useEffect, useState } from "react";
 
-const ProjectForm = ({ selectedProject, setSelectedProject }) => {
+const ProjectForm = ({
+  selectedProject,
+  setSelectedProject,
+  setShowModal,
+  showModal,
+}) => {
   const { projects, newProject, setNewProject } = UseProject();
   const [formData, setFormData] = useState({
     name: "",
@@ -46,7 +51,10 @@ const ProjectForm = ({ selectedProject, setSelectedProject }) => {
 
   return (
     <div>
-      <form className="flex flex-col py-18 bg-white p-6 rounded-xl shadow-lg w-[90%] max-w-md " onSubmit={handleSubmit}>
+      <form
+        className="flex flex-col py-18 bg-white p-6 rounded-xl shadow-lg w-[90%] max-w-md "
+        onSubmit={handleSubmit}
+      >
         <label htmlFor="name">Project Name</label>
         <input
           className="border"
@@ -64,7 +72,15 @@ const ProjectForm = ({ selectedProject, setSelectedProject }) => {
           onChange={handleChange}
         />
         <button type="submit"> submit</button>
-        <button type="button" onClick={()=>setSelectedProject(null)}> close</button>
+        <button
+          type="button"
+          onClick={() => {
+            setSelectedProject(null);
+            setShowModal(()=>!showModal);
+          }}
+        >
+          close
+        </button>
       </form>
     </div>
   );

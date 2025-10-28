@@ -11,7 +11,7 @@ const Projects = () => {
   const { projects, newProject, setNewProject } = UseProject();
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(true);
   const toggleModal = () => {
     setShowModal(() => !showModal);
   };
@@ -29,19 +29,21 @@ const Projects = () => {
           <div>
             <input className="border" type="text" name="search" />
           </div>
-          <button onClick={toggleModal}>Create Project</button>
         </div>
+        <button onClick={toggleModal}>Create Project</button>
         {showModal && (
-          <div className="fixed inset-0 bg-black/50 flex justify-center items-center z-50
-">
+          <div>
             <Modal
               selectedProject={selectedProject}
               setSelectedProject={setSelectedProject}
+              setShowModal = {setShowModal}
+              showModal = {showModal}
             />
 
             {/* <ProjectForm
               selectedProject={selectedProject}
               setSelectedProject={setSelectedProject}
+              setShowModal={setShowModal}
             /> */}
           </div>
         )}
