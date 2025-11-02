@@ -3,24 +3,21 @@
 import Card from "@/app/compenents/project/card";
 import { UseProject } from "@/app/context/useContex";
 import React, { useState } from "react";
-import ProjectForm from "./form";
-import Link from "next/link";
 import Modal from "@/app/compenents/project/modal";
 
 const Projects = () => {
   const { projects, newProject, setNewProject } = UseProject();
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
-  const [showModal, setShowModal] = useState(true);
+  const [showModal, setShowModal] = useState(false);
   const toggleModal = () => {
     setShowModal(() => !showModal);
   };
 
   const handleEdit = (project) => {
     setSelectedProject(project);
-    console.log(project);
+    setShowModal(true);
   };
-  const handleButton = () => {};
 
   return (
     <div>
@@ -36,8 +33,8 @@ const Projects = () => {
             <Modal
               selectedProject={selectedProject}
               setSelectedProject={setSelectedProject}
-              setShowModal = {setShowModal}
-              showModal = {showModal}
+              setShowModal={setShowModal}
+              showModal={showModal}
             />
 
             {/* <ProjectForm
@@ -52,7 +49,6 @@ const Projects = () => {
       <div className="flex flex-col gap-2">
         {newProject.map((project) => (
           <div key={project.id}>
-            {/* <Link href={`/dashboard/project/${project.id}`}> */}
             <Card
               onEdit={handleEdit}
               project={project}
@@ -60,7 +56,6 @@ const Projects = () => {
               description={project.description}
               projectId={project.id}
             ></Card>
-            {/* </Link> */}
           </div>
         ))}
       </div>

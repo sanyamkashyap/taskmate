@@ -40,6 +40,8 @@ const ProjectForm = ({
     }));
   };
 
+  console.log(newProject)
+
   useEffect(() => {
     if (selectedProject) {
       setFormData({
