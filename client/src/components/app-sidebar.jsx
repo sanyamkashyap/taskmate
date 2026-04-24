@@ -20,7 +20,8 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
-export default function AppSidebar() {
+export default function AppSidebar({ projects }) {
+  console.log(projects);
   return (
     <Sidebar className="top-14 h-[calc(100vh-56px)]" collapsible="icon">
       <SidebarHeader>
@@ -55,15 +56,6 @@ export default function AppSidebar() {
 
             <SidebarMenuItem>
               <SidebarMenuButton asChild>
-                <Link to="/">
-                  <Folder className="mr-2 h-4 w-4" />
-                  Project
-                </Link>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-
-            <SidebarMenuItem>
-              <SidebarMenuButton asChild>
                 <Link to="/settings">
                   <Settings className="mr-2 h-4 w-4" />
                   Settings
@@ -71,6 +63,19 @@ export default function AppSidebar() {
               </SidebarMenuButton>
             </SidebarMenuItem>
           </SidebarMenu>
+        </SidebarGroup>
+        <SidebarGroup>
+          <SidebarGroupLabel>Porjects</SidebarGroupLabel>
+          {projects?.map((project) => (
+            <SidebarMenuItem key={project._id}>
+              <SidebarMenuButton asChild>
+                <Link to={`/project/${project._id}`}>
+                  <Folder className="mr-2 h-4 w-4" />
+                  <span>{project.name}</span>
+                </Link>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          ))}
         </SidebarGroup>
       </SidebarContent>
     </Sidebar>

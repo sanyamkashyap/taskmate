@@ -9,6 +9,13 @@ import Main from "./components/main.jsx";
 import ColumnForm from "./components/Column/columnForm.jsx";
 import ProjectForm from "./components/projectForm.jsx";
 
+const projectsLoader = async () => {
+  const response = await fetch("http://localhost:3000/project", {
+    credentials: "include",
+  });
+  return response.json();
+};
+
 const router = createBrowserRouter([
   {
     path: "/register",
@@ -20,12 +27,19 @@ const router = createBrowserRouter([
   },
   {
     path: "/",
-    // element: <ColumnForm />,
-    element: <Home />,
-  },
-  {
-    path: "/project/:projectId",
-    element: <Main />,
+    element: <Layout />,
+    loader: projectsLoader,
+    children: [
+      {
+        path: "/home",
+        // element: <ColumnForm />,
+        element: <Home />,
+      },
+      {
+        path: "/project/:projectId",
+        element: <Main />,
+      },
+    ],
   },
 ]);
 

@@ -6,7 +6,10 @@ import { Button } from "@/components/ui/button";
 
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import Header from "./components/header/header.jsx";
+import { Outlet, useLoaderData } from "react-router-dom";
 const Layout = ({ children }) => {
+  const projects = useLoaderData();
+
   return (
     <div>
       <SidebarProvider defaultOpen={true}>
@@ -14,10 +17,11 @@ const Layout = ({ children }) => {
           <Header></Header>
           <div className=" flex-1 h-full overflow-hidden">
             <div className="flex flex-1 h-full overflow-hidden">
-              <AppSidebar />
+              <AppSidebar projects={projects} />
               <main className="flex flex-1 bg-gray-400">
                 {/* <SidebarTrigger className="mb-4" /> */}
                 {children}
+                <Outlet context={{ projects }}></Outlet>
               </main>
             </div>
           </div>

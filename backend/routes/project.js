@@ -6,6 +6,7 @@ import checkAuth from "../middleware/auth.js";
 
 const router = express.Router();
 
+// CREATE PROJECT
 router.post("/", async (req, res) => {
   const userId = req.user._id;
   const { name, description } = req.body;
@@ -25,16 +26,18 @@ router.post("/", async (req, res) => {
   res.json({ project, board });
 });
 
+//get project
 router.get("/", async (req, res) => {
   const userId = req.user._id;
   // console.log(userId);
   const project = await Project.find({
     userId,
-  }).lean();
+  });
 
   res.json(project);
 });
 
+//get board
 router.get("/:projectId/boards", async (req, res) => {
   const { projectId } = req.params;
 

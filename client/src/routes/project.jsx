@@ -6,7 +6,7 @@ import Board from "../components/Board/board.jsx";
 import ProjectHeader from "../components/projectHeader.jsx";
 import { useParams } from "react-router-dom";
 
-const Project = () => {
+const Project = ({ projects }) => {
   const [showCard, setShowCard] = useState(false);
   const [column, setColumn] = useState();
   const [board, setBoard] = useState([]);
@@ -40,7 +40,7 @@ const Project = () => {
 
   return (
     <div className="flex flex-col bg-[beige] mx-auto w-full ">
-      <ProjectHeader board={board}></ProjectHeader>
+      <ProjectHeader board={board} projects={projects}></ProjectHeader>
       {/* <Button onClick={() => setShowCard(!showCard)}>create</Button> */}
 
       <div className="p-4">
