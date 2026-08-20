@@ -3,13 +3,16 @@ import Column from "../models/columnModel.js";
 
 const router = express.Router();
 
-router.get("/column", async (req, res) => {
+router.get("/:boardId/column", async (req, res) => {
   try {
-    const columns = await Column.find().lean();
-    console.log(columns);
+    const { boardId } = req.params;
+    // console.log(boardId);
+    const columns = await Column.find({ board_id: boardId }).lean();
+    // console.log(columns);
     res.json(columns);
   } catch (err) {
     res.json(err);
+    console.log(err);
   }
 });
 

@@ -30,7 +30,6 @@ export default function AppSidebar({ projects }) {
           <h1 className="text-lg font-bold">TaskMate</h1>
         </LayoutDashboard>
       </SidebarHeader>
-
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel>Menu</SidebarGroupLabel>

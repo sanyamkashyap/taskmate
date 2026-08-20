@@ -3,15 +3,27 @@ import Todo from "../models/todoModel.js";
 const router = express.Router();
 
 router.get("/", async (req, res) => {
-  const todo = await Todo.find;
-  res.json("this is todo");
+  try {
+    const userId = req.user._id;
+    // console.log(userId);
+    const todo = await Todo.find({ userId: userId }).lean();
+    // console.log(todo);
+    res.json(todo);
+  } catch (err) {
+    console.log(err);
+    res.json(err);
+  }
 });
 
-router.post("/", async (req, res) => {
-  const { title, description, priority } = req.body;
+router.post("/:columnId", async (req, res) => {
+  const user_Id = req.user._id;
+  const { title, description } = req.body;
+  const { columnId } = req.params;
   const addTodo = await Todo.create({
     title,
     description,
+    columnId,
+    userId: user_Id,
   });
 
   console.log(addTodo);

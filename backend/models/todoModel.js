@@ -7,10 +7,10 @@ const todo = new Schema({
   },
   description: {
     type: String,
-    required: true,
   },
-  projectId: {
+  columnId: {
     type: Schema.Types.ObjectId,
+    ref: "Column",
     required: true,
   },
   userId: {

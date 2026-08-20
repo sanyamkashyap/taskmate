@@ -27,8 +27,8 @@ const ProjectForm = ({ isOpen, setIsOpen }) => {
       headers: {
         "Content-Type": "application/json",
       },
-      credentials: "include",
       body: JSON.stringify(formData),
+      credentials: "include",
     });
 
     const data = await response.json();

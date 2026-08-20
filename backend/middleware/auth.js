@@ -1,31 +1,36 @@
 import React from "react";
 import User from "../models/userModel.js";
+import Session from "../models/sessionModel.js";
 
 const checkAuth = async (req, res, next) => {
-  const { token } = req.signedCookies;
+  try {
+    const { sid } = req.signedCookies;
+    console.log(sid);
 
-  if (!token) {
-    return res.status(401).json({ error: "Not logged!" });
+    if (!sid) {
+      res.clearCookie("sid");
+      return res.status(401).json({ error: "1 Not logged!" });
+    }
+
+    const session = await Session.findById(sid);
+    if (!session) {
+      res.clearCookie("sid");
+      return res.status(401).json({ error: "2 Not logged!" });
+    }
+
+    const user = await User.findOne({ _id: session.userId });
+
+    if (!user) {
+      return res.status(401).json({ error: "2 Not logged!" });
+    }
+
+    console.log({ user: user });
+
+    req.user = user;
+    next();
+  } catch (err) {
+    console.log(err);
   }
-
-  const { id, expire } = JSON.parse(Buffer.from(token, "base64url").toString());
-
-  const jsonPayload = JSON.parse(Buffer.from(token, "base64url").toString());
-
-  if (expire < Math.round(Date.now() / 1000)) {
-    return res.status(401).json({ error: "Token expired" });
-  }
-
-  const user = await User.findOne({ _id: id });
-
-  if (!token || !user) {
-    return res.status(401).json({ error: "Not logged!" });
-  }
-
-  // console.log(user);
-
-  req.user = user;
-  next();
 };
 
 export default checkAuth;

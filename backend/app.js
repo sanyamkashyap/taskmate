@@ -22,7 +22,7 @@ app.use(
 app.use(express.json());
 app.use(cookieParser(secret));
 
-app.use("/todo", todoRoutes);
+app.use("/todo", checkAuth, todoRoutes);
 app.use("/user", userRoutes);
 app.use("/board", checkAuth, columnRoutes);
 app.use("/project", checkAuth, projectRoutes);

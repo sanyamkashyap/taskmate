@@ -12,8 +12,11 @@ const Project = ({ projects }) => {
   const [board, setBoard] = useState([]);
 
   const { projectId } = useParams();
-  console.log(projectId);
-  console.log({ board });
+  // console.log(projectId);
+  // console.log({ board });
+
+  const project = projects.find((proj) => proj._id == projectId);
+  console.log({ project: project });
 
   const fetchBoards = async () => {
     const response = await fetch(
@@ -26,7 +29,7 @@ const Project = ({ projects }) => {
     setBoard(data);
     // console.log(data);
   };
-  // console.log(board);
+  console.log({ board: board });
 
   useEffect(() => {
     if (projectId) {
@@ -39,13 +42,24 @@ const Project = ({ projects }) => {
   }, [board]);
 
   return (
-    <div className="flex flex-col bg-[beige] mx-auto w-full ">
-      <ProjectHeader board={board} projects={projects}></ProjectHeader>
-      {/* <Button onClick={() => setShowCard(!showCard)}>create</Button> */}
+    <div className="w-full">
+      {board.length === 0 ? (
+        <div>loading boards...</div>
+      ) : (
+        board.map((b) => (
+          <div className="flex flex-col bg-[beige] mx-auto w-full h-full">
+            <ProjectHeader
+              boardTitle={b.title}
+              projectName={project.name}
+            ></ProjectHeader>
+            {/* <Button onClick={() => setShowCard(!showCard)}>create</Button> */}
 
-      <div className="p-4">
-        <Board board={board} />
-      </div>
+            <div>
+              <Board board={b} project={project} />
+            </div>
+          </div>
+        ))
+      )}
     </div>
   );
 };

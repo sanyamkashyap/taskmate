@@ -1,10 +1,10 @@
-const ProjectHeader = ({ board, projects }) => {
+const ProjectHeader = ({ boardTitle, projectName }) => {
   return (
     <div className="px-4 pt-4  border-b-gray-400 border-1">
       <div className="flex flex-col gap-2">
-        <div>{projects.map(({ name }) => name)}</div>
+        <div>{projectName}</div>
         <div>
-          <button>{board.map(({ title }) => title)}</button>
+          <button>{boardTitle}</button>
           {/* <div>hello</div> */}
         </div>
       </div>

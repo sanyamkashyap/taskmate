@@ -8,10 +8,11 @@ const router = express.Router();
 
 // CREATE PROJECT
 router.post("/", async (req, res) => {
-  const userId = req.user._id;
+  const userId = req.user;
+  console.log(userId);
   const { name, description } = req.body;
 
-  console.log({ userId });
+  // console.log({ userId });
   const project = await Project.create({
     name,
     description,
@@ -28,11 +29,13 @@ router.post("/", async (req, res) => {
 
 //get project
 router.get("/", async (req, res) => {
-  const userId = req.user._id;
-  // console.log(userId);
+  const userId = req.user;
+  console.log({ user1: userId });
   const project = await Project.find({
     userId,
   });
+
+  console.log(project);
 
   res.json(project);
 });

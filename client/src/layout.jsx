@@ -18,7 +18,7 @@ const Layout = ({ children }) => {
           <div className=" flex-1 h-full overflow-hidden">
             <div className="flex flex-1 h-full overflow-hidden">
               <AppSidebar projects={projects} />
-              <main className="flex flex-1 bg-gray-400">
+              <main className="flex flex-1 bg-gray-400 min-w-0">
                 {/* <SidebarTrigger className="mb-4" /> */}
                 {children}
                 <Outlet context={{ projects }}></Outlet>
